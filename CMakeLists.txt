@@ -13,6 +13,8 @@ add_executable(
 
 	Main.cpp
 	glad.c
+	
+	Shader.cpp
 	)
 
 target_link_libraries(${PROJECT_NAME} SOIL2)

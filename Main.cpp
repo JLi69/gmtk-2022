@@ -2,6 +2,7 @@
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include "Shader.h"
 
 int main()
 {
@@ -39,6 +40,9 @@ int main()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(rect), rect, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 2, GL_FLOAT, false, 2 * sizeof(float), (void*)0);	
 	glEnableVertexAttribArray(0);
+
+	Shader test("res/shaders/simple-vert.glsl", "res/shaders/simple-frag.glsl");
+	test.Use();
 
 	while(!glfwWindowShouldClose(win))
 	{	
