@@ -20,4 +20,6 @@ public:
 	Shader(std::string vertPath, std::string fragPath); //constructor
 
 	void Use();
+
+	int getUniformLocation(std::string name);
 };

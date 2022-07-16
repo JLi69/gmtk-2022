@@ -1,0 +1,11 @@
+#ignore build files
+Makefile
+CMakeFiles
+*.txt
+*.cmake
+
+#don't ignore CMakeLists
+!CMakeLists.txt
+
+#ignore executable
+dice

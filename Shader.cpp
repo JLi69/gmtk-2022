@@ -80,3 +80,8 @@ Shader::Shader(std::string vertPath, std::string fragPath)
 	ShaderSrc src = mRead(vertPath, fragPath);	
 	mCompile(src);
 }
+
+int Shader::getUniformLocation(std::string name)
+{
+	return glGetUniformLocation(mProgramId, name.c_str());
+}

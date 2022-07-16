@@ -8,6 +8,8 @@ endif()
 
 project(dice)
 
+find_package(OpenGL REQUIRED)
+
 add_executable(
 	${PROJECT_NAME}
 
@@ -15,7 +17,15 @@ add_executable(
 	glad.c
 	
 	Shader.cpp
+	Texture.cpp
+
+	Map.cpp
+	
+	Player.cpp
+	
+	Enemy.cpp
 	)
 
 target_link_libraries(${PROJECT_NAME} SOIL2)
+target_link_libraries(${PROJECT_NAME} OpenGL::GL)
 target_link_libraries(${PROJECT_NAME} glfw3)
