@@ -1,7 +1,7 @@
 enum EnemyType
 {
 	SPIDER,
-	BAT,
+	DEMON,
 	SLIME
 };
 

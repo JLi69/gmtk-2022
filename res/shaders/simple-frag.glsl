@@ -10,7 +10,7 @@ layout(binding = 0) uniform sampler2D samp;
 
 void main()
 {
-	color = uColor;	
+	color = uColor;		
 
 	color = texture(samp, tc);
 

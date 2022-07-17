@@ -16,6 +16,11 @@ int Enemy::getY()
 	return mPosY;
 }
 
+EnemyType Enemy::getType()
+{
+	return mEnemy;
+}
+
 Enemy::Enemy()
 {
 	mPosX = 0;

@@ -24,6 +24,7 @@ add_executable(
 	Player.cpp
 	
 	Enemy.cpp
+	Bomb.cpp
 	)
 
 target_link_libraries(${PROJECT_NAME} SOIL2)
