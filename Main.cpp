@@ -185,6 +185,9 @@ void handleKeyInput(GLFWwindow *win, int key, int scancode, int action, int mods
 		{
 			if(key == keys[i])
 			{
+				if(diceVals[i] == 0)
+					continue;
+
 				//Update the board
 				for(auto &bombObj : bombs)
 					bombObj.Move();		
@@ -457,7 +460,7 @@ void handleMouseClick(GLFWwindow *win, int button, int action, int mods)
 		if(rolled)
 			updateEnemies();
 	}
-	else if(button == GLFW_MOUSE_BUTTON_LEFT)
+	else if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
 		//Click on the dice
 		double mouseX, mouseY;
@@ -465,21 +468,25 @@ void handleMouseClick(GLFWwindow *win, int button, int action, int mods)
 		int winWidth, winHeight;
 		glfwGetWindowSize(win, &winWidth, &winHeight);
 		
-		if(winWidth < winHeight)
-			mouseY -= ((double)winHeight / 2.0 - (double)winWidth / 2.0);
+
+		//Normalize the mouse position	
+		if(winWidth < winHeight)	
+		{	
+			mouseY += ((double)winWidth / 2.0 - (double)winHeight / 2.0);	
+			mouseX /= (double)winWidth;
+			mouseY /= (double)winWidth;		
+		}	
 		else if(winWidth >= winHeight)
-			mouseX -= ((double)winWidth / 2.0 - (double)winHeight / 2.0);
-	
-		//Normalize the mouse position
-		mouseX /= (double)winWidth;
-		mouseY /= (double)winHeight;
+		{
+			mouseX += ((double)winHeight / 2.0 - (double)winWidth / 2.0);	
+			mouseX /= (double)winHeight;
+			mouseY /= (double)winHeight;		
+		}
 		mouseX *= 2.0;
 		mouseY *= 2.0;
 		mouseX -= 1.0;
 		mouseY -= 1.0;	
-		mouseY *= -1.0;	
-		
-		std::cout << mouseX << ' ' << mouseY << '\n';
+		mouseY *= -1.0;		
 		
 		for(int i = 0; i < DICE_COUNT; i++)
 		{
@@ -489,6 +496,9 @@ void handleMouseClick(GLFWwindow *win, int button, int action, int mods)
 				-0.9 - 0.08 < mouseY &&
 				-0.9 + 0.08 > mouseY)
 			{
+				if(diceVals[i] == 0)
+					return;
+			
 				//Update the board
 				for(auto &bombObj : bombs)
 					bombObj.Move();		
